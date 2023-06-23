@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -24,4 +24,81 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+} */
+
+/* @import "furtive-print";
+@import "furtive-typescale";
+@import "furtive-responsive-utils"; */
+
+@import url('http://fonts.googleapis.com/css?family=Merriweather:300italic,300');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+
+
+.md-block > body {
+  color: #444;
+  font-family: 'Merriweather', Georgia, serif;
+  margin: 0;
+  max-width: 100%;
+}
+
+/* === A bit of a gross hack so we can have bleeding divs/blockquotes. */
+.md-block >
+p,
+.md-block > *:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p) {
+  margin: 1rem auto 1rem;
+  max-width: 43rem;
+  padding: .25rem;
+}
+
+.md-block > div {
+  width: 100%;
+}
+
+.md-block > div img {
+  width: 100%;
+}
+
+.md-block > blockquote p {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin: 1rem auto 1rem;
+  max-width: 47rem;
+}
+
+.md-block > li {
+  margin-left: 2rem;
+}
+
+/* Counteract the specificity of the gross *:not() chain. */
+.md-block > h1 {
+  padding: 4rem 0 !important;
+}
+/*  === End gross hack */
+
+.md-block > p {
+  color: #555;
+  height: auto;
+  line-height: 1.45;
+}
+
+.md-block > pre, .md-block > code {
+  font-family: "JetBrains Mono", Menlo, Monaco, "Courier New", monospace
+}
+
+.md-block > pre {
+  background-color: #fafafa;
+  font-size: .8rem;
+  overflow-x: scroll;
+  padding: 1.125em;
+}
+
+.md-block > a,
+.md-block > a:visited {
+  color: #3498db;
+}
+
+.md-block > a:hover,
+.md-block > a:focus,
+.md-block > a:active {
+  color: #2980b9;
 }
