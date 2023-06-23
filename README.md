@@ -1,4 +1,4 @@
 # realworld-frontend-nextjs
 
-## Inspiration ✨
+## inspiration ✨
 (Splendor Markdown css)[http://markdowncss.github.io/splendor/]
