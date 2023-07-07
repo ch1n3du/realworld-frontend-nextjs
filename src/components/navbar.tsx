@@ -1,7 +1,8 @@
 export default function NavBar() {
     return (
-        <nav className="flex px-8 pt-12">
+        <nav className="border-b px-8 py-2 flex justify-between">
             {/* Medium logo */}
+            <a href="/">
             <svg viewBox="0 0 1043.63 592.71" className="au av w-11">
                 <g data-name="Layer 2">
                     <g data-name="Layer 1">
@@ -10,14 +11,26 @@ export default function NavBar() {
                     </g>
                 </g>
             </svg>
+            </a>
 
-            {/* Write icon */}
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-label="Write">
-                <path d="M14 4a.5.5 0 0 0 0-1v1zm7 6a.5.5 0 0 0-1 0h1zm-7-7H4v1h10V3zM3 4v16h1V4H3zm1 17h16v-1H4v1zm17-1V10h-1v10h1zm-1 1a1 1 0 0 0 1-1h-1v1zM3 20a1 1 0 0 0 1 1v-1H3zM4 3a1 1 0 0 0-1 1h1V3z" fill="currentColor">
-                </path>
-                <path d="M17.5 4.5l-8.46 8.46a.25.25 0 0 0-.06.1l-.82 2.47c-.07.2.12.38.31.31l2.47-.82a.25.25 0 0 0 .1-.06L19.5 6.5m-2-2l2.32-2.32c.1-.1.26-.1.36 0l1.64 1.64c.1.1.1.26 0 .36L19.5 6.5m-2-2l2 2" stroke="currentColor">
-                </path>
-            </svg>
+            <div className="--bg-red-600 flex  items-center justify-between">
+                {/* Write button */}
+                <button className="hidden md:flex --bg-blue-600">
+                    <svg className="" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-label="Write">
+                        <path className="" d="M14 4a.5.5 0 0 0 0-1v1zm7 6a.5.5 0 0 0-1 0h1zm-7-7H4v1h10V3zM3 4v16h1V4H3zm1 17h16v-1H4v1zm17-1V10h-1v10h1zm-1 1a1 1 0 0 0 1-1h-1v1zM3 20a1 1 0 0 0 1 1v-1H3zM4 3a1 1 0 0 0-1 1h1V3z" fill="currentColor">
+                        </path>
+                            <path  stroke="currentColor"  d="M17.5 4.5l-8.46 8.46a.25.25 0 0 0-.06.1l-.82 2.47c-.07.2.12.38.31.31l2.47-.82a.25.25 0 0 0 .1-.06L19.5 6.5m-2-2l2.32-2.32c.1-.1.26-.1.36 0l1.64 1.64c.1.1.1.26 0 .36L19.5 6.5m-2-2l2 2">
+                        </path>
+                    </svg>
+                    <span className="mx-1"></span>
+                    <span className="text-sm darken-text-on-hover">Write</span>
+                </button>
+
+                <span className="mx-3"></span>
+
+                <img className="h-9 w-9" src="https://uploads5.wikiart.org/images/m-c-escher/circle-limit-i.jpg!Large.jpg" alt="" />
+                {/* <a href=""> </a> */}
+            </div>
         </nav>
     )
 }

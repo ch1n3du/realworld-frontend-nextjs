@@ -6,6 +6,9 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    fontFamily: {
+      'playfair': ['Playfair Display', 'Georgia', 'Cambria', 'Times New Roman']
+    },
     screens: {
       'md': '45rem',
     },
