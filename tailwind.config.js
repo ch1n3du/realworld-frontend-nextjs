@@ -10,7 +10,8 @@ module.exports = {
       'playfair': ['Playfair Display', 'Georgia', 'Cambria', 'Times New Roman']
     },
     screens: {
-      'md': '45rem',
+      sm: '45rem',
+      md: '55rem',
     },
     extend: {
       backgroundImage: {

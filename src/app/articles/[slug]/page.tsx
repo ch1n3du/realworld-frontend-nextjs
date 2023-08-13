@@ -1,10 +1,12 @@
 import Image from "next/image"
+import Link from "next/link";
 import {Icon, Icons} from "@/components/icon";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 type ArticleProps = {
     params: { slug: string }
 }
+
 
 export default function Page({ params }: ArticleProps) {
     let author = articleData.author;
@@ -22,9 +24,15 @@ export default function Page({ params }: ArticleProps) {
 
             {/* Author Section */}
             <div className="flex mb-6">
-                <a href={authorProfileLink}>
-                    <img src={author.image} alt="Author's profile picture"
-                    className="h-10 w-10 md:h-12 md:w-12 rounded-full mr-2"/>
+                {/* Profile pic */}
+                <a href={authorProfileLink} className="flex justify-center items-center pt-0">
+                    <Image
+                        src="/pfp.jpg"
+                        height={38}
+                        width={38}
+                        alt=""
+                        className="rounded-full mr-2"
+                    />
                 </a>
 
                 <div className="flex flex-col">
@@ -78,7 +86,7 @@ export default function Page({ params }: ArticleProps) {
             </div>
 
             {/* Article Body */}
-            <section className="md-block">
+            <section className="md-block text-lg">
                 <ReactMarkdown>{articleData.body}</ReactMarkdown>
             </section>
     </div>
@@ -90,7 +98,9 @@ const articleData = {
     title: "On the occlusion of stars",
     description: "A report concerning the activities of the visitors.",
     favoritesCount:  23_000,
-    body: `In the remote province where Amelia's ranch nestled, the vast celestial tapestry was a source of eternal fascination. The heavens themselves seemed to whisper secrets, revealing the depths of the universe to those willing to listen. But on this particular night, the celestial choir appeared to be silenced, veiled by an inexplicable occlusion.
+    body: `In the remote province where Amelia's ranch nestled, the vast celestial tapestry was a source of eternal fascination.
+    The \`heavens\` themselves seemed to whisper secrets, revealing the depths of the universe to those willing to listen.
+    But on this particular night, the celestial choir appeared to be silenced, veiled by an inexplicable occlusion.
 
 ## Calculations 
 \`\`\`
@@ -117,8 +127,7 @@ From that night forward, the rancher's heart harbored a secret, a knowing that t
     author: {
         username: "Manny",
         bio: "The living embodiement of Manhattan :)",
-        image: "https://uploads5.wikiart.org/images/m-c-escher/circle-limit-i.jpg!Large.jpg",
+        image: "pfp.jpg",
         following: false,
     },
 }
-

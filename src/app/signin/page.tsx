@@ -1,7 +1,8 @@
 'use client'
-import { ResponseError, Status } from "@/responses";
-import { API_URL } from "@/utils"
-import Image from "next/image";
+import FormError from "@/components/form_error";
+import { Requests, UserResponse } from "@/requests";
+import { setUserData, validateEmail } from "@/utils"
+import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 export default function LoginPage() {
@@ -9,39 +10,29 @@ export default function LoginPage() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     // let authError: ResponseError | null = null;
+    const router = useRouter();
 
     const attemptLogin = async (event: FormEvent) => {
-        let requestBody = JSON.stringify({
-            user: {
-                email: email,
-                password: password,
-            }
-        });
-
         try {
-            let res = await fetch(`${API_URL}/users/login`, {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                method: "POST",
-                cache: "no-store",
-                body: requestBody,
-            });
-            let body = await res.json();
-            switch (res.status) {
-                case Status.Ok:
-                    setError("");
-                    break;
-                default:
-                    let errorMessage = (body as ResponseError).message;
-                    setError(errorMessage);
-                    break;
+            if (validateEmail(email) === false) {
+                setError("Invalid email");
+                return;
             }
-            console.log(`RES: ${JSON.stringify(body)}`)
+            let response = await Requests.loginUser({email, password});
+            if (typeof response === "string") {
+                setError(response);
+                console.log(`API_ERR: ${response}`);
+                return;
+            }
+            console.log(`AWAITED_RES: ${response}`)
+
+            // TODO TEST
+            setUserData(response as UserResponse)
         } catch (error) {
             console.log(`Error: ${error}`);
+            return;
         }
-        event.preventDefault()
+        router.push('/')
     };
 
 
@@ -55,19 +46,7 @@ export default function LoginPage() {
 
                 {/* Error display */}
                 {error.length > 0 && 
-                    <div className="">
-                        <div className="flex pl-2 p-1 bg-red-100 text-red-900">
-                            <Image
-                              src="icons/warning-sign.svg"
-                              height={18}
-                              width={18}
-                              alt=""
-                            />
-                            <span className="mx-1"></span>
-                            {error}
-                        </div>
-                        <div className="mb-3"></div>
-                    </div>
+                    <FormError errorMessage={error} />
                 } 
 
                 <input
@@ -87,7 +66,7 @@ export default function LoginPage() {
                 <input
                     type="submit"
                     value="Submit" 
-                    className="mt-2 p-1 rounded-sm bg-slate-950 hover:bg-slate-700 text-white" 
+                    className="mt-2 p-1 rounded-sm lighten-bg-on-hover text-white" 
                 />
             </form>
         </div>
